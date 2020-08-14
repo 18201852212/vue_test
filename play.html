@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .mainplayer{
+        width: 800px;
+        height: 450px;
+        margin: 200px auto;
+    }
+    .mainplayer video{
+        width: 100%;
+        height: 100%;
+    }
+    .gifcon{
+        width: 250px;
+        height: 250px;
+        margin: 100px 0;
+    }
+    .gif{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+    <script src="./lib/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="gifcon"><img src="./img/galaxy.jpg"  class="gif"></div>
+    <div class='mainplayer' >
+        <video controls='controls' src="D:\videodownload\【视觉盛宴-BELIEVER-超燃】 万物皆虚，万事皆允-全程高能！刺客信条极致踩点混剪！ (P1. Believer!!!H)[00]_1.mp4"></video>
+    </div>
+    <script>
+        $('.gif').mouseover(function(){$('.gif').attr('src','./img/galaxy.gif')})
+        $('.gif').mouseout(function(){$('.gif').attr('src','./img/galaxy.jpg')})
+        //通过修改div背景图片切换会很不平滑最好通过img修改src属性来切换
+        </script>
+</body>
+</html>

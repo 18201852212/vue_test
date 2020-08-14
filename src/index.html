@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>*{
+			margin: 0;
+			padding: 0;
+			border:none;
+		}
+		</style>
+</head>
+<body>
+		<div id="top"></div>
+		<div id='app'></div>
+		<script src="flv.min.js"></script>
+		<script src='download.min.js'></script>
+		<video id="videoElement"  height="360px" width="640px" controls='controls'></video>
+		<canvas id="seccan" height="720px" width="1280px"></canvas>
+		<input type="button" value="begin" onclick="play()">
+		<a href="/route.html">route</a>
+		<script>
+			var videoElement = document.getElementById('videoElement');
+			if (flvjs.isSupported()) {
+				var flvPlayer = flvjs.createPlayer({
+					type: 'flv',
+					url: '/asset/FLV/AZ-aLIEz.flv'
+				});
+				flvPlayer.attachMediaElement(videoElement);
+				flvPlayer.load();
+			};
+			cantem=document.getElementById('seccan')
+			context=cantem.getContext('2d')
+			function play(){
+				context.drawImage(videoElement,0,0,1280,720)
+				var img=cantem.toDataURL('image/png')
+				download(img,'pick.png','image/png')
+				// var play=setInterval(()=>context.drawImage(videoElement,0,0,640,360),10)
+			}
+		</script>
+		<script src="/index.js"></script>
+		<style>
+		p{
+			color: black;
+		}
+		#videonavmask{
+			display: flex;
+			flex-direction: column;
+			opacity: 0.7;
+			position: absolute;
+			z-index: 2;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			text-align: center;
+			justify-content: center;
+			color:azure;
+			background-color: rgb(72, 59, 56);
+		}
+		#seccan{
+			width: 640px;
+			height: 360px;
+		}
+		</style>
+		<!-- <script>
+		var body=document.body
+		body.onscroll=listener
+		function listener(){
+			console.log('yes')
+		}
+		</script> -->
+		<!-- 将scroll事件绑定到window解决js绑定滑动失效问题 -->
+
+<!-- 因为 canvas 不是矢量图，而是像图片一样是位图模式的。高 dpi 显示设备意味着每平方英寸有更多的像素。也就是说二倍屏，
+浏览器就会以2个像素点的宽度来渲染一个像素，该 canvas 在 Retina 屏幕下相当于占据了2倍的空间，相当于图片被放大了一倍，
+因此绘制出来的图片文字等会变模糊。因此，要做 Retina 屏适配，关键是知道当前屏幕的设备像素比，
+然后将 canvas 放大到该设备像素比来绘制，然后将 canvas 压缩到一倍来展示。
+解决思路
+在浏览器的 window 对象中有一个 devicePixelRatio 的属性，该属性表示了屏幕的设备像素比，即用几个（通常是2个）像素点宽度来渲染1个像素。
+举例来说，假设 devicePixelRatio 的值为 2 ，一张 100×100 像素大小的图片，
+在 Retina 屏幕下，会用 2 个像素点的宽度去渲染图片的 1 个像素点，
+因此该图片在 Retina 屏幕上实际会占据 200×200 像素的空间，相当于图片被放大了一倍，因此图片会变得模糊。
+类似的，在 canvas context 中也存在一个 backingStorePixelRatio 的属性，
+该属性的值决定了浏览器在渲染canvas之前会用几个像素来来存储画布信息。
+ backingStorePixelRatio 属性在各浏览器厂商的获取方式不一样，所以需要加上浏览器前缀来实现兼容。 -->
+ <!-- var myCanvas = document.getElementById("my_canvas");
+var context = myCanvas.getContext("2d");
+var getPixelRatio = function (context) {
+	var backingStore = context.backingStorePixelRatio ||
+	context.webkitBackingStorePixelRatio ||
+	context.mozBackingStorePixelRatio ||
+	context.msBackingStorePixelRatio ||
+	context.oBackingStorePixelRatio ||
+	context.backingStorePixelRatio || 1;
+	return (window.devicePixelRatio || 1) / backingStore;
+	};
+	var ratio = getPixelRatio(context); -->
+	<!-- 要设置canvas的画布大小，使用的是 canvas.width 和 canvas.height；
+要设置画布的实际渲染大小，使用的 style 属性或CSS设置的 width 和height，只是简单的对画布进行缩放。
+2倍屏幕下示例代码：
+
+HTML 代码:
+<canvas width="640" height="800" style="width:320px; height:400px"></canvas>
+canvas的实际大小的640px × 800px，但是实际渲染到页面的大小是320px × 400px，相当于缩小一倍来显示。 -->
+</body>
+</html>

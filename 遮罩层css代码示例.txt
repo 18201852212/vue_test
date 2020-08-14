@@ -1,0 +1,16 @@
+#videonavmask{
+			display: flex;
+			flex-direction: column;
+			opacity: 0.7;
+			position: absolute;
+			z-index: 2;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			text-align: center;
+			justify-content: center;
+			background-color: rgb(72, 59, 56);
+		}
+/*需要给父元素一个不为static的position定位
+vue可以通过v-if选择是否渲染遮罩层组件或者通过v-show选择是否显示遮罩层组件不用通过麻烦的dom操作来使用遮罩层
